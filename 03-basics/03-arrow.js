@@ -43,7 +43,7 @@ const chai =  () => {
 
 // const addTwo = (num1, num2) => ( num1 + num2 )
 
-const addTwo = (num1, num2) => ({username: "hitesh"})
+const addTwo = (num1, num2) => ({username: "hitesh"})// object return krna hai to usko parenthesis me wrap krna hoga nhi to js samjhega ki function body start ho rhi h
 
 
 console.log(addTwo(3, 4))
