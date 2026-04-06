@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dom-creation</title>
+</head>
+<body style="background-color: black;color: white;">
+    <div class="parent">
+        <!-- this is a comment 1:16 -->
+        <div class="day">Monday</div>
+        <div class="day">Tuesday</div>
+        <div class="day">Wednesday</div>
+        <div class="day">Thursday</div>
+    </div>
+</body>
+
+<script>
+    const parent = document.querySelector(".parent")
+    //console.log(parent);
+    //console.log(parent.children); //children se monday, tuesday, wednesday, thursday aayenge as html collection
+    //console.log(parent.children[0].innerHTML);
+
+    // for(let i=0; i<parent.children.length; i++){
+    //     console.log(parent.children[i].innerHTML);
+    // }
+    parent.children[0].style.color = "red";
+    //console.log(parent.firstElementChild);//parent to child selection relation
+    //console.log(parent.lastElementChild);
+
+const day1 = document.querySelector('.day');
+//console.log(day1);
+///console.log(day1.parentElement);//child to parent selection relation
+//console.log(day1.nextElementSibling);//sibling to sibling selection relation
+
+console.log('NODES:', parent.childNodes);//childNodes includes complete tree structure of the parent element, including text nodes (like whitespace) and comment nodes, in addition to element nodes. It returns a NodeList of all child nodes, which can include elements, text, and comments.
+
+
+</script>
+
+</html>
