@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>node list creation</title>
+</head>
+<body style ="background-color: black; color: white;">
+    
+</body>
+
+<script>
+    //div element creation
+    const div = document.createElement("div")
+    console.log(div);
+    //ab attributes dete h
+    div.className = "main"
+    div.id = Math.round(Math.random() * 10 +1)
+    // costume attribute ke liye div.setattribute("attribute name", "value") method use karte h
+    div.setAttribute("custom-Attribute","custom-value")// ye value lekr nhi ata direct div ke attribute me set kr deta h one round trip bachta h
+    div.style.backgroundColor = "orange"
+    div.style.padding = "12px"
+    // thori optimixation ki batte innerText reference lekr ayega uske baad overwrite karega
+    //agr hum div.innerText ="vebdb" use krte to ye div ke andar text node create krta, aur uske baad us text node ke andar "vebdb" value set krta,
+    //  isliye hum directly const addText = document.createTextNode("Chai aur code") use krte h taki ek text node create ho jaye uske andar "Chai aur code" value set ho jaye, aur uske baad div ke andar us text node ko append kr dete h div.appendChild(addText) use krke, isse ek extra text node create hone se bach jata h.
+    // copilot (div.textContent = "vebdb" use krte h taki direct text content set ho jaye bina extra text node create kiye.)
+    // abhi div memory mai h page pr nhi aya h, page attach tb hoga jb document ko bolenge is child ko attach to kro apne pas 
+const addText = document.createTextNode("Chai aur code")
+    div.appendChild(addText)
+
+    document.body.appendChild(div)// ye div ko body ke child ke roop me attach kr dega, aur abhi humne jo bhi changes kiye the wo sab reflect hone lagenge page pr
+
+</script>
+</html>
