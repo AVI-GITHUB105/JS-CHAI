@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>html Events</title>
+</head>
+
+<body style="background-color: #414141; color: aliceblue;">
+    <h2>Amazing image</h2>
+    <div>
+        <ul id="images">
+            <li><img width="200px" id="photoshop"
+                    src="https://images.pexels.com/photos/3561339/pexels-photo-3561339.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load"
+                    alt="photoshop"></li>
+            <li><img width="200px" id="japan"
+                    src="https://images.pexels.com/photos/3532553/pexels-photo-3532553.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load"
+                    alt=""></li>
+            <li><img width="200px" id="river"
+                    src="https://images.pexels.com/photos/3532551/pexels-photo-3532551.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load"
+                    alt=""></li>
+            <!-- mainly people image clickkrne pe kuch trigger ho onclick laga lete h alt ke baad ye work to karega but acchi approach nhi scalability ke time problem ho jati h but react ke andar 
+            nhi hoti waha liberies handel krleti h react scalable hota h so hum abhi sirf pure js ki baat kr rhe h -->
+            <!-- <li><img width="200px" id="owl" src="https://images.pexels.com/photos/3532552/pexels-photo-3532552.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt=""  onclick="alert(owl)" ></li> -->
+            <li><img width="200px" id="owl"
+                    src="https://images.pexels.com/photos/3532552/pexels-photo-3532552.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load"
+                    alt=""></li>
+            <li><img width="200px" id="prayer"
+                    src="https://images.pexels.com/photos/2522671/pexels-photo-2522671.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load"
+                    alt=""></li>
+            <li><a style="color: aliceblue;" href="https://google.com" id="google">Google</a></li>
+        </ul>
+    </div>
+</body>
+
+<script>
+    // JavaScript code for handling events
+
+    // second approach for owl in js
+    // document.getElementById('owl').onclick = function () {
+    //     alert('Owl image clicked!');
+    // } //ye methos bhiitna sahi nhi h
+
+    // attachEvent() internetexpolorer ke liye use hota tha but ab use nhi hota hai isliye hum addEventListener ka use karte hai jo ki modern 
+    // browsers me support hota hai
+    // jQuery - on
+
+    // is approach me onclick  ke sath propogation ka feature bhi milta hai jisse hum parent element pe bhi event laga sakte hai aur child 
+    // element pe bhi event laga sakte hai dono alag alag trigger honge
+
+    // document.getElementById('owl').addEventListener('click', function() {
+    //         alert('Owl image clicked!');
+    //     });
+
+    // type(keyboard,mouse), timestamp, defaultPrevented
+    // target, toElement, srcElement, currentTarget,
+    // clientX, clientY, screenX, screenY
+    // altkey, ctrlkey, shiftkey, keyCode
+
+    // document.getElementById('owl').addEventListener('click', function (e) { // e event object hai jisme event se related information hoti hai 
+    // // jaise ki target element, event type, etc.
+    //     console.log(e); // event object ko console me log karte hai
+    //     //browser & envi ke eventsmilte h console me properties info child ...etc ke sath
+    // }, false); // false ka matlab hai ki event bubbling phase me trigger hoga, true ka matlab hai ki event capturing phase me trigger hoga
+
+    // Event propogation default-(event bubbling )& event capturing
+
+// document.getElementById('images').addEventListener('click', function (e) {
+//     console.log( 'clickr inside the ul');
+// } , );//true bubble capturing
+// document.getElementById('owl').addEventListener('click', function (e) {
+//     console.log( 'clicked on owl');
+//     e.stopPropogation();
+// } , );
+
+document.getElementById('google').addEventListener('click', function (e) {
+    e.preventDefault(); // ye method default behavior ko prevent kar deta hai jaise ki anchor tag ke case me page reload hona ya link pe jana
+    console.log('clicked on google');
+})
+
+document.querySelector("#images").addEventListener("click", function (e) {
+    console.log(e.target.parentNode); 
+    console.log(e.target.tagName); // ye hume tag name dega jisme click hua hai
+    
+    if (e.target.tagName === "IMG") { // ye check lagay taki kahi ul na ud jaye by e.target.parentNode
+    let removeit = e.target.parentNode; 
+    console.log(e.target.id);
+    removeit.remove(); // ye hume parent element dega jisme click hua hai
+    //removeit.parentNode.removeChild(removeit); // ye bhi parent element dega jisme click hua hai aur usko remove kar dega
+    }   
+    
+});
+
+</script>
+
+</html>
