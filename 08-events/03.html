@@ -1,0 +1,49 @@
+<!-- in project 6better start stop with edge check -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2asyn project</title>
+</head>
+
+<body>
+    <h1> Thy are adorable</h1>
+    <button id="start">start</button>
+    <button id="stop">stop</button>
+</body>
+
+<script>
+
+//     const saydate = function() {
+//     console.log('Avinash',Date.now())
+// }
+// setInterval(saydate, 2000) // ye function ko har 2 second me call karega
+
+    const saydate = function(str) {
+    console.log(str ,'Avinash',Date.now())
+}
+//const stopid = setInterval(saydate, 2000, 'hi') // ye function ko har 2 second me call karega aur hi argument pass karega
+document.querySelector("#start").addEventListener("click", function () {
+   const intervalid = setInterval(saydate, 1000, 'hi') // ye function ko stop kar deta hai;
+    console.log("interval started");
+    //  alert("interval started");
+    document.querySelector("#stop").addEventListener("click", function () {
+    clearInterval(intervalid) // ye function ko stop kar deta hai;
+    console.log("interval stopped", Date.now());
+    //  alert("interval stopped");
+})
+})
+
+
+
+// document.querySelector("#stop").addEventListener("click", function () {
+//     clearInterval(intervalid) // ye function ko stop kar deta hai;
+//     console.log("interval stopped");
+//     //  alert("interval stopped");
+// })
+</script>
+
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2asyn project</title>
+</head>
+
+<body>
+    <h1> you are awesome</h1>
+    <button id="stop">stop</button>
+</body>
+
+<script>
+
+    // const sayname = function () {
+    //     console.log("avinash");
+    // }
+    // setTimeout( sayname, 2000)
+    const textchange = function () {
+        document.querySelector("h1").innerHTML = "LETS GO";
+    }
+
+   const changeme = setTimeout(textchange, 2000) // browser ke through api use krte h function in  window object
+    //clearTimeout(changeme) // ye function ko stop kar deta hai;
+    // but direct lagane ka fayda hi kya jo pehle se hi settimeout ki functionalty rok de 
+    // to koi event or trigger pe work kwre uske acording krte h
+ document.querySelector('#stop').addEventListener('click', function() {
+        clearTimeout(changeme);
+        console.log("timeout stopped");
+        alert("timeout stopped");
+ }
+    )
+</script>
+
+</html>
