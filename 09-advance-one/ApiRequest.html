@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        .card {
+            display: flex;
+            gap: 20px;
+            background-color: #424242;
+            padding: 20px;
+            margin-top: 20px;
+            /* margin-left: 20px; */
+            border-radius: 10px;
+            width: 400px;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .getdata {
+            display: flex;
+            gap: 10px;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        .prodetails {
+display: none;
+        }
+    </style>
+</head>
+
+<body style="background-color: #212121; color: white;">
+    0 UNSENT Client has been created. open() not called yet.
+    1 OPENED open() has been called.
+    2 HEADERS_RECEIVED send() has been called, and headers and status are available.
+    3 LOADING Downloading; responseText holds partial data.
+    4 DONE The operation is complete.
+
+    <div class="card">
+        <div class="getdata">
+            <h1>GET DATA</h1>
+            <button id="getBtn">GET</button>
+        </div>
+        <div id="data"></div>
+        <div class="proimg"></div>
+        <div class="prodetails">
+            <h2>Avinash Kumar</h2>
+            <p>Followers: <span id="followers"></span></p>
+            <p>Following: <span id="following"></span></p>
+            <p>Public Repos: <span id="repos"></span></p>
+        </div>
+
+    </div>
+
+</body>
+<script>
+    //(xmlHttpRequest() Method h jise new new krke object banate )xmlHttpRequest object create krte h jisse apna data send ya recieve kr skte h
+    const requesturl = "https://api.github.com/users/AVI-GITHUB105"
+    const xhr = new XMLHttpRequest();
+    xhr.open("GET", requesturl);//send() se open call hota h apne aap callnhi hota h
+    console.log(xhr.readyState);// to print 1 OPENED open() has been called.
+    xhr.onreadystatechange = function () {
+        console.log(xhr.readyState);
+        if (xhr.readyState === 4) {
+            // console.log(xhr.responseText);
+            const data = JSON.parse(this.responseText);
+            console.log(typeof data);// object show hoga kyuki json string ko parse krke object me convert kr diya h
+            console.log(data.followers);// undefined show hoga in caase of data.followers kyuki data ek string h json format me h to usko parse krna padega
+            console.log(data.avatar_url);
+            document.getElementById('getBtn').addEventListener('click', function () {
+                alert("data fetched successfully");
+                document.querySelector(".prodetails").style.display = "block"; 
+                document.querySelector(".proimg").innerHTML = `<img src="${data.avatar_url}" alt="profile image" width="200px" height="200px">`
+                document.getElementById("followers").textContent = data.followers;
+                document.getElementById("following").textContent = data.following;
+                document.getElementById("repos").textContent = data.public_repos;
+            })
+
+
+        }
+    }
+
+    xhr.send();// ye request bhej dega server ko aur response ka wait karega
+
+</script>
+
+</html>
